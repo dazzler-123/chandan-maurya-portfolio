@@ -331,11 +331,14 @@ pre code {
     print-color-adjust: exact !important;
   }
 
-  /* Hide header navbar, main sections, footer, and modal action controls */
+  /* Hide header navbar, main sections, footer, mobile toggle button, and modal action controls */
+  header,
   nav,
   main,
   footer,
-  .no-print {
+  .no-print,
+  .mobile-toggle,
+  .nav-status-badge {
     display: none !important;
   }
 
@@ -395,11 +398,12 @@ pre code {
     color: #0f172a !important;
     border: none !important;
     border-radius: 0 !important;
-    padding: 0 !important;
+    padding: 1.5rem 1.75rem !important;
     margin: 0 !important;
     box-shadow: none !important;
     font-size: 10pt !important;
     line-height: 1.5 !important;
+    box-sizing: border-box !important;
   }
 
   /* Typography & High-Contrast Print Styling */
