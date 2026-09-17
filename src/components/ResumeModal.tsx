@@ -164,7 +164,7 @@ ${PERSONAL_INFO.languages.join(', ')}
             </h2>
             <div className="resume-skills-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem', fontSize: '0.875rem' }}>
               {SKILL_CATEGORIES.map((cat) => (
-                <div key={cat.id} className="resume-item">
+                <div key={cat.id} className="resume-item resume-skill-card">
                   <strong className="resume-title-bold" style={{ color: '#ffffff' }}>{cat.category}:</strong>{' '}
                   <span className="resume-text" style={{ color: '#cbd5e1' }}>{cat.skills.map((s) => s.name).join(', ')}</span>
                 </div>

@@ -439,15 +439,27 @@ pre code {
 
   #printable-resume .resume-skills-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 0.6rem 1.5rem !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 0.75rem 2rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #printable-resume .resume-skill-card {
+    min-width: 0 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.45 !important;
   }
 
   #printable-resume .resume-text,
   #printable-resume .resume-bullet-list li,
   #printable-resume p,
-  #printable-resume span {
+  #printable-resume span,
+  #printable-resume div {
     color: #334155 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
   }
 
   #printable-resume .resume-title-bold,
