@@ -210,6 +210,23 @@ export const PROJECTS: Project[] = [
     featured: true
   },
   {
+    id: 'tronpay-crypto-gateway',
+    title: 'TronPay — TRON Crypto Gateway & Telegram Wallet',
+    category: 'Web3',
+    tagline: 'Decentralized TRON payment gateway, automated wallet sweeping engine & Telegram Mini App',
+    description: 'A Web3 crypto payment gateway and wallet infrastructure built on the TRON blockchain. Features NestJS microservices with TronWeb, automated background wallet sweep cron jobs, TOTP 2FA, Telegram Bot/Mini App crypto transfers, and central payout settlement services.',
+    technologies: ['NestJS', 'TronWeb (TRON)', 'TypeScript', 'MongoDB', 'React Native', 'React', 'Telegram Bot API', 'Socket.IO', 'TOTP 2FA'],
+    keyHighlights: [
+      'Engineered TRON blockchain integration using TronWeb for automated deposit detection, wallet generation, and transaction verification.',
+      'Architected background wallet sweep automation and cron job schedulers (@nestjs/schedule) for batch transaction processing & liquidity pooling.',
+      'Integrated Telegram Bot API & Mini App functionality enabling peer-to-peer crypto transfers and instant wallet notifications inside Telegram.',
+      'Implemented multi-layer security featuring TOTP 2FA (otplib), Passport JWT guards, bcrypt hashing, and QR-code deposit triggers.',
+      'Built a central merchant payout portal for automated fiat/crypto settlements and transaction audit logging.'
+    ],
+    metrics: 'TRON Blockchain Sweeping Engine & Telegram Crypto Mini App',
+    featured: true
+  },
+  {
     id: 'investment-management',
     title: 'Investment Management Platform',
     category: 'Fintech',
