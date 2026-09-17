@@ -162,6 +162,22 @@ export const PROJECTS: Project[] = [
     featured: true
   },
   {
+    id: 'gamma-frontoffice-monorepo',
+    title: 'GAMMA FrontOffice Enterprise Monorepo',
+    category: 'Fintech',
+    tagline: 'Turborepo & npm workspaces micro-frontend monorepo for 19+ financial advisory modules',
+    description: 'An enterprise micro-frontend monorepo architecture connecting 19+ independent financial modules including Goal Planning, Risk Profiling, Portfolio Rebalancing, Investment Cart, Fund Explorer, and Analytics.',
+    technologies: ['React', 'TypeScript', 'Turborepo', 'npm Workspaces', 'Vite', 'Docker', 'Nginx', 'GitLab CI/CD'],
+    keyHighlights: [
+      'Architected a micro-frontend monorepo unifying 19+ wealth management and advisory modules.',
+      'Configured Turborepo & npm workspaces for rapid build caching, shared dependencies, and parallel script execution.',
+      'Implemented Docker containerization and Nginx reverse proxy routing with SSL certificate termination.',
+      'Integrated GitLab CI/CD pipelines for automated testing, build verification, and zero-downtime deployment.'
+    ],
+    metrics: '19+ Micro-Frontend Wealth Management Modules',
+    featured: true
+  },
+  {
     id: 'investment-management',
     title: 'Investment Management Platform',
     category: 'Fintech',
