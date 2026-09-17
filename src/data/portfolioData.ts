@@ -2,9 +2,9 @@ import type { Project, ExperienceItem, SkillCategory } from '../types';
 
 export const PERSONAL_INFO = {
   name: 'Chandan Maurya',
-  title: 'Senior Full-Stack Developer | MEAN / MERN / React Native',
-  headline: 'Senior Full-Stack & Cross-Platform Engineer',
-  tagline: 'Building High-Performance Web & Mobile Apps, Fintech Engines, InsurTech Workflows, and Web3/Crypto Infrastructure.',
+  title: 'Senior Full-Stack Developer | MERN / MEAN / React Native',
+  headline: 'Senior Full-Stack, AI Agent & Web3 Software Engineer',
+  tagline: 'Architecting Enterprise Micro-Frontends, AI LangGraph Agents, TRON Web3 Gateways & Cross-Platform Apps.',
   experienceYears: '5+',
   location: 'Noida, Uttar Pradesh, India (201301)',
   email: 'mauryachandan650@gmail.com',
@@ -14,14 +14,14 @@ export const PERSONAL_INFO = {
   github: 'https://github.com/mauryachandan',
   linkedin: 'https://linkedin.com/in/chandan-maurya',
   languages: ['English (Professional)', 'Hindi (Native)'],
-  bio: `Senior Full-Stack Developer with 5+ years of experience specializing in MEAN (MongoDB, Express, Angular, Node.js), MERN (MongoDB, Express, React, Node.js), and React Native stacks. Proven track record of architecting scalable enterprise platforms, leading cross-platform mobile app development, implementing AES-CBC encrypted financial APIs, and constructing Web3/blockchain interaction layers. Recognized for creating a no-code form engine that reduced customer support tickets by 25% and implementing database schema migrations for multi-million record workloads.`
+  bio: `Senior Full-Stack Developer & Technical Lead with 5+ years of experience engineering high-scale enterprise applications, micro-frontend monorepos, AI state machine agents, and Web3 blockchain infrastructure. Specializing in MERN, MEAN, React Native, NestJS, and Python (FastAPI/LangGraph), Chandan has architected Turborepo monorepos for 19+ financial modules, developed TRON blockchain payment gateways with Telegram Mini Apps, built Playwright AI job automation engines powered by Gemini AI, and pioneered a no-code form engine that reduced customer support tickets by 25%.`
 };
 
 export const METRICS = [
-  { label: 'Years Experience', value: '5+', description: 'Architecting Web & Mobile Systems' },
-  { label: 'Production Apps', value: '9+', description: 'Fintech, InsurTech & Web3 Platforms' },
+  { label: 'Years Experience', value: '5+', description: 'Enterprise Web, Mobile & Web3 Systems' },
+  { label: 'Enterprise Projects', value: '14+', description: 'Fintech, AI Agents, InsurTech & Web3' },
+  { label: 'Micro-Frontends', value: '19+', description: 'Modules Built with Turborepo' },
   { label: 'Support Reduction', value: '25%', description: 'Achieved via No-Code Form Engine' },
-  { label: 'Modules Delivered', value: '50+', description: 'Financial Advisory & Portfolio Management' },
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
@@ -29,9 +29,9 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     category: 'Programming Languages',
     id: 'languages',
     skills: [
-      { name: 'JavaScript (ES6+)', highlighted: true },
       { name: 'TypeScript', highlighted: true },
-      { name: 'Python' },
+      { name: 'JavaScript (ES6+)', highlighted: true },
+      { name: 'Python', highlighted: true },
       { name: 'C / C++' }
     ]
   },
@@ -39,69 +39,66 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     category: 'Frameworks & Frontend',
     id: 'frameworks',
     skills: [
-      { name: 'React 18', highlighted: true },
-      { name: 'React Native', highlighted: true },
-      { name: 'Node.js', highlighted: true },
-      { name: 'Express.js', highlighted: true },
+      { name: 'React 19 / 18', highlighted: true },
+      { name: 'React Native (iOS & Android)', highlighted: true },
+      { name: 'Node.js & Express.js', highlighted: true },
+      { name: 'NestJS Microservices', highlighted: true },
+      { name: 'FastAPI (Python)', highlighted: true },
       { name: 'Angular 7+ / 11', highlighted: true },
-      { name: 'Redux / Redux Toolkit', highlighted: true },
-      { name: 'Material-UI (MUI)' },
+      { name: 'Redux Toolkit & Encrypted State', highlighted: true },
+      { name: 'Material-UI (MUI v7)', highlighted: true },
       { name: 'Vite' },
-      { name: 'React Hook Form' }
+      { name: 'React Hook Form' },
+      { name: 'React Grid Layout (Dynamic Dashboards)' }
     ]
   },
   {
-    category: 'Databases & Storage',
-    id: 'databases',
+    category: 'AI, State Machines & Automation',
+    id: 'ai',
     skills: [
-      { name: 'MongoDB', highlighted: true },
-      { name: 'PostgreSQL', highlighted: true },
-      { name: 'MySQL' },
-      { name: 'MS Access' }
+      { name: 'LangGraph State Machines', highlighted: true },
+      { name: 'Google Gemini AI API', highlighted: true },
+      { name: 'Playwright Browser Automation', highlighted: true },
+      { name: 'n8n Workflow Automation', highlighted: true },
+      { name: 'ChatGPT API / Prompt Engineering' },
+      { name: 'Cursor AI & GitHub Copilot' }
     ]
   },
   {
-    category: 'Blockchain & Web3',
+    category: 'Blockchain, Web3 & Telegram Apps',
     id: 'blockchain',
     skills: [
+      { name: 'TRON Blockchain (TronWeb)', highlighted: true },
       { name: 'Ethereum (ETH)', highlighted: true },
-      { name: 'Wax Blockchain', highlighted: true },
-      { name: 'Talos Blockchain' },
-      { name: 'NFT Marketplaces', highlighted: true },
-      { name: 'Crypto Exchange Platforms' },
+      { name: 'Telegram Bot API & Mini Apps', highlighted: true },
+      { name: 'NFT Marketplaces & Smart Contracts', highlighted: true },
+      { name: 'Wax & Talos Blockchain' },
       { name: 'Chainlang & Chaingraph' }
     ]
   },
   {
-    category: 'AI Tools & Workflows',
-    id: 'ai',
+    category: 'Databases & Real-Time Messaging',
+    id: 'databases',
     skills: [
-      { name: 'n8n Workflow Automation', highlighted: true },
-      { name: 'ChatGPT API / Prompting', highlighted: true },
-      { name: 'Cursor AI', highlighted: true },
-      { name: 'GitHub Copilot' }
+      { name: 'MongoDB & Mongoose', highlighted: true },
+      { name: 'PostgreSQL', highlighted: true },
+      { name: 'SQLite', highlighted: true },
+      { name: 'Socket.IO WebSockets', highlighted: true },
+      { name: 'Firebase FCM Push Notifications', highlighted: true },
+      { name: 'MySQL & MS Access' }
     ]
   },
   {
-    category: 'API & Security Engineering',
-    id: 'api',
-    skills: [
-      { name: 'RESTful API Engineering', highlighted: true },
-      { name: 'Payment Gateway Integration', highlighted: true },
-      { name: 'AES-CBC API Encryption', highlighted: true },
-      { name: 'Insurer Third-Party APIs' },
-      { name: 'Axios Interceptors & Session Handling' }
-    ]
-  },
-  {
-    category: 'DevOps & Best Practices',
+    category: 'Architecture, Security & DevOps',
     id: 'devops',
     skills: [
-      { name: 'iOS / Android Build & Deployment', highlighted: true },
-      { name: 'Code Splitting & Lazy Loading' },
-      { name: 'Database Schema Migration (MongoDB → Postgres)', highlighted: true },
-      { name: 'Git & Version Control' },
-      { name: 'Linux / Windows Administration' },
+      { name: 'Turborepo & npm Workspaces Monorepo', highlighted: true },
+      { name: 'Docker & Nginx Reverse Proxy', highlighted: true },
+      { name: 'GitLab CI/CD Pipelines', highlighted: true },
+      { name: 'AES-CBC & Redux State Encryption', highlighted: true },
+      { name: 'TOTP 2FA Security (otplib)' },
+      { name: 'Automated Wallet Sweep Cron Jobs' },
+      { name: 'Database Migrations (MongoDB → PostgreSQL)' },
       { name: 'Developer Mentorship & Code Reviews' }
     ]
   }

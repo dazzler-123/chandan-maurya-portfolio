@@ -277,9 +277,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                       {'  '}role: <span style={{ color: '#10b981' }}>'Senior Full-Stack Developer'</span>,{'\n'}
                       {'  '}experience: <span style={{ color: '#f59e0b' }}>5</span> <span style={{ color: '#64748b' }}>// years+</span>,{'\n'}
                       {'  '}location: <span style={{ color: '#10b981' }}>'Noida, UP, India'</span>,{'\n'}
-                      {'  '}primaryStacks: [<span style={{ color: '#10b981' }}>'MEAN'</span>, <span style={{ color: '#10b981' }}>'MERN'</span>, <span style={{ color: '#10b981' }}>'React Native'</span>],{'\n'}
-                      {'  '}domainSpecialty: [<span style={{ color: '#10b981' }}>'Fintech'</span>, <span style={{ color: '#10b981' }}>'InsurTech'</span>, <span style={{ color: '#10b981' }}>'Web3/Crypto'</span>],{'\n'}
-                      {'  '}databaseMigration: <span style={{ color: '#10b981' }}>'MongoDB → PostgreSQL'</span>,{'\n'}
+                      {'  '}primaryStacks: [<span style={{ color: '#10b981' }}>'MERN'</span>, <span style={{ color: '#10b981' }}>'MEAN'</span>, <span style={{ color: '#10b981' }}>'React Native'</span>, <span style={{ color: '#10b981' }}>'NestJS'</span>],{'\n'}
+                      {'  '}aiAndAutomation: [<span style={{ color: '#10b981' }}>'LangGraph'</span>, <span style={{ color: '#10b981' }}>'Gemini AI'</span>, <span style={{ color: '#10b981' }}>'Playwright'</span>],{'\n'}
+                      {'  '}web3AndArchitecture: [<span style={{ color: '#10b981' }}>'TRON Web3'</span>, <span style={{ color: '#10b981' }}>'Turborepo'</span>, <span style={{ color: '#10b981' }}>'Telegram Mini Apps'</span>],{'\n'}
                       {'  '}status: <span style={{ color: '#10b981' }}>'Available for Senior / Lead Roles'</span>{'\n'}
                       &#125;;
                     </code>
@@ -293,16 +293,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                     </p>
                     <ul style={{ paddingLeft: '1.2rem', margin: 0 }}>
                       <li style={{ marginBottom: '0.4rem' }}>
-                        Architecting cross-platform iOS/Android mobile apps with React Native.
+                        Architecting 19+ module micro-frontend monorepos with Turborepo & Docker.
                       </li>
                       <li style={{ marginBottom: '0.4rem' }}>
-                        Building 13-step banking workflows & AES-CBC encrypted financial APIs.
+                        Building autonomous AI agents with LangGraph state machines & Playwright.
                       </li>
                       <li style={{ marginBottom: '0.4rem' }}>
-                        Engineering Web3 smart contract interaction layers (Talos, Ethereum, Wax).
+                        Engineering TRON blockchain payment gateways & Telegram wallet Mini Apps.
                       </li>
                       <li>
-                        Optimizing bundle sizes, code splitting & high-throughput Node.js APIs.
+                        Building AES-encrypted React 19 financial suites & cross-platform React Native apps.
                       </li>
                     </ul>
                   </div>
