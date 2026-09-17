@@ -68,6 +68,7 @@ ${PERSONAL_INFO.languages.join(', ')}
       >
         {/* Modal Top Actions */}
         <div
+          className="no-print"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -114,6 +115,7 @@ ${PERSONAL_INFO.languages.join(', ')}
         {/* Printable Formatted Resume View */}
         <div
           id="printable-resume"
+          className="printable-resume"
           style={{
             background: '#070a11',
             border: '1px solid var(--border-subtle)',
@@ -124,15 +126,15 @@ ${PERSONAL_INFO.languages.join(', ')}
           }}
         >
           {/* Resume Header */}
-          <div style={{ borderBottom: '2px solid var(--accent-cyan)', paddingBottom: '1.25rem', marginBottom: '1.5rem' }}>
-            <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#ffffff', margin: 0, textTransform: 'uppercase' }}>
+          <div className="resume-header" style={{ borderBottom: '2px solid var(--accent-cyan)', paddingBottom: '1.25rem', marginBottom: '1.5rem' }}>
+            <h1 className="resume-name" style={{ fontSize: '2.2rem', fontWeight: 800, color: '#ffffff', margin: 0, textTransform: 'uppercase' }}>
               {PERSONAL_INFO.name}
             </h1>
-            <p style={{ fontSize: '1.1rem', color: 'var(--accent-cyan)', fontWeight: 600, marginTop: '0.25rem' }}>
+            <p className="resume-subtitle" style={{ fontSize: '1.1rem', color: 'var(--accent-cyan)', fontWeight: 600, marginTop: '0.25rem' }}>
               {PERSONAL_INFO.title}
             </p>
 
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '0.75rem', fontSize: '0.875rem', color: '#94a3b8' }}>
+            <div className="resume-contact-info" style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '0.75rem', fontSize: '0.875rem', color: '#94a3b8' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                 <Phone size={14} color="var(--accent-teal)" /> {PERSONAL_INFO.phone}
               </span>
@@ -146,45 +148,45 @@ ${PERSONAL_INFO.languages.join(', ')}
           </div>
 
           {/* Summary Section */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+          <div className="resume-section" style={{ marginBottom: '1.5rem' }}>
+            <h2 className="resume-section-title" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
               SUMMARY
             </h2>
-            <p style={{ fontSize: '0.925rem', color: '#cbd5e1', margin: 0 }}>
+            <p className="resume-text" style={{ fontSize: '0.925rem', color: '#cbd5e1', margin: 0 }}>
               {PERSONAL_INFO.bio}
             </p>
           </div>
 
           {/* Skills Section */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+          <div className="resume-section" style={{ marginBottom: '1.5rem' }}>
+            <h2 className="resume-section-title" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
               SKILLS & COMPETENCIES
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem', fontSize: '0.875rem' }}>
               {SKILL_CATEGORIES.map((cat) => (
-                <div key={cat.id}>
-                  <strong style={{ color: '#ffffff' }}>{cat.category}:</strong>{' '}
-                  <span style={{ color: '#cbd5e1' }}>{cat.skills.map((s) => s.name).join(', ')}</span>
+                <div key={cat.id} className="resume-item">
+                  <strong className="resume-title-bold" style={{ color: '#ffffff' }}>{cat.category}:</strong>{' '}
+                  <span className="resume-text" style={{ color: '#cbd5e1' }}>{cat.skills.map((s) => s.name).join(', ')}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Experience Section */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
+          <div className="resume-section" style={{ marginBottom: '1.5rem' }}>
+            <h2 className="resume-section-title" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
               WORK EXPERIENCE
             </h2>
             {WORK_EXPERIENCE.map((exp) => (
-              <div key={exp.id} style={{ marginBottom: '1.25rem' }}>
+              <div key={exp.id} className="resume-item" style={{ marginBottom: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                  <strong style={{ fontSize: '1.05rem', color: '#ffffff' }}>{exp.company}</strong>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)' }}>{exp.period}</span>
+                  <strong className="resume-title-bold" style={{ fontSize: '1.05rem', color: '#ffffff' }}>{exp.company}</strong>
+                  <span className="resume-date" style={{ fontSize: '0.85rem', color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)' }}>{exp.period}</span>
                 </div>
-                <div style={{ fontStyle: 'italic', fontSize: '0.925rem', color: '#94a3b8', marginBottom: '0.5rem' }}>
+                <div className="resume-text" style={{ fontStyle: 'italic', fontSize: '0.925rem', color: '#94a3b8', marginBottom: '0.5rem' }}>
                   {exp.role} | {exp.location}
                 </div>
-                <ul style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.875rem', color: '#cbd5e1' }}>
+                <ul className="resume-bullet-list" style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.875rem', color: '#cbd5e1' }}>
                   {exp.bulletPoints.map((b, i) => (
                     <li key={i} style={{ marginBottom: '0.3rem' }}>{b}</li>
                   ))}
@@ -194,26 +196,26 @@ ${PERSONAL_INFO.languages.join(', ')}
           </div>
 
           {/* Projects Section */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
+          <div className="resume-section" style={{ marginBottom: '1.5rem' }}>
+            <h2 className="resume-section-title" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
               SELECTED PROJECTS
             </h2>
             {PROJECTS.slice(0, 5).map((p) => (
-              <div key={p.id} style={{ marginBottom: '0.85rem' }}>
-                <strong style={{ color: '#ffffff', fontSize: '0.95rem' }}>{p.title}</strong>{' '}
-                <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>({p.technologies.join(', ')})</span>
-                <p style={{ fontSize: '0.85rem', color: '#cbd5e1', margin: '0.2rem 0 0 0' }}>{p.description}</p>
+              <div key={p.id} className="resume-item" style={{ marginBottom: '0.85rem' }}>
+                <strong className="resume-title-bold" style={{ color: '#ffffff', fontSize: '0.95rem' }}>{p.title}</strong>{' '}
+                <span className="resume-text" style={{ fontSize: '0.8rem', color: '#94a3b8' }}>({p.technologies.join(', ')})</span>
+                <p className="resume-text" style={{ fontSize: '0.85rem', color: '#cbd5e1', margin: '0.2rem 0 0 0' }}>{p.description}</p>
               </div>
             ))}
           </div>
 
           {/* Languages */}
-          <div>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+          <div className="resume-section">
+            <h2 className="resume-section-title" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
               LANGUAGES
             </h2>
-            <div style={{ fontSize: '0.875rem', color: '#cbd5e1' }}>
-              <strong style={{ color: '#ffffff' }}>Languages:</strong> {PERSONAL_INFO.languages.join(', ')}
+            <div className="resume-text" style={{ fontSize: '0.875rem', color: '#cbd5e1' }}>
+              <strong className="resume-title-bold" style={{ color: '#ffffff' }}>Languages:</strong> {PERSONAL_INFO.languages.join(', ')}
             </div>
           </div>
         </div>
