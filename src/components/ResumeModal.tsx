@@ -162,7 +162,7 @@ ${PERSONAL_INFO.languages.join(', ')}
             <h2 className="resume-section-title" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
               SKILLS & COMPETENCIES
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem', fontSize: '0.875rem' }}>
+            <div className="resume-skills-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem', fontSize: '0.875rem' }}>
               {SKILL_CATEGORIES.map((cat) => (
                 <div key={cat.id} className="resume-item">
                   <strong className="resume-title-bold" style={{ color: '#ffffff' }}>{cat.category}:</strong>{' '}
