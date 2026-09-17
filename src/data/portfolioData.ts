@@ -178,6 +178,22 @@ export const PROJECTS: Project[] = [
     featured: true
   },
   {
+    id: 'integra-ui',
+    title: 'Integra UI Enterprise Financial Suite',
+    category: 'Fintech',
+    tagline: 'React 19 & TypeScript financial advisory suite with encrypted state persistence & dynamic grid layouts',
+    description: 'An enterprise financial advisory suite featuring client-side AES-encrypted state persistence, dynamic drag-and-drop widget grid dashboards, Highcharts & Chart.js financial analytics, and Material-UI components.',
+    technologies: ['React 19', 'TypeScript', 'Redux Toolkit', 'Crypto-JS Encryption', 'Material-UI', 'Highcharts', 'React Grid Layout', 'Vite'],
+    keyHighlights: [
+      'Architected a modular React 19 & TypeScript financial advisory suite with custom draggable widget dashboards (react-grid-layout).',
+      'Implemented AES payload encryption and encrypted Redux state persistence (redux-persist-transform-encrypt) for data compliance.',
+      'Constructed interactive financial analytics, portfolio yield charts, and historical performance graphs using Highcharts & Chart.js.',
+      'Built advanced multi-level date range pickers, Excel document export pipelines, and Axios interceptor authentication workflows.'
+    ],
+    metrics: 'AES Encrypted Redux Persistence & Dynamic Grid Layouts',
+    featured: true
+  },
+  {
     id: 'investment-management',
     title: 'Investment Management Platform',
     category: 'Fintech',
