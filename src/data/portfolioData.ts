@@ -145,6 +145,23 @@ export const WORK_EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 'ai-job-agent',
+    title: 'AI Job Application Agent',
+    category: 'AI / Automation',
+    tagline: 'Autonomous AI agent powered by FastAPI, LangGraph, Playwright & Google Gemini',
+    description: 'An autonomous agent system that parses resumes into candidate profiles, scores job listings using a weighted matching engine, and executes automated form applications via Playwright browser automation guided by a LangGraph state machine.',
+    technologies: ['Python', 'FastAPI', 'LangGraph', 'Google Gemini API', 'Playwright', 'SQLite', 'Uvicorn'],
+    keyHighlights: [
+      'Engineered a robust cyclical state machine workflow using LangGraph for job queue orchestration, retry logic, and error isolation.',
+      'Integrated Google Gemini AI for automated PDF & DOCX resume parsing into structured candidate JSON profiles.',
+      'Implemented a weighted dynamic matching engine scoring candidate suitability across skills, experience, location, and job titles.',
+      'Built Playwright browser automation for automated form filling, field validation, and submission audit logging with screenshots.',
+      'Designed a sleek glassmorphism dashboard for profile management, application queue monitoring, and manual intervention controls.'
+    ],
+    metrics: 'LangGraph State Machine & Playwright Automation',
+    featured: true
+  },
+  {
     id: 'investment-management',
     title: 'Investment Management Platform',
     category: 'Fintech',

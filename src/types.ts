@@ -1,7 +1,7 @@
 export interface Project {
   id: string;
   title: string;
-  category: 'Fintech' | 'InsurTech' | 'Web3' | 'Full-Stack';
+  category: 'Fintech' | 'InsurTech' | 'Web3' | 'Full-Stack' | 'AI / Automation';
   tagline: string;
   description: string;
   technologies: string[];

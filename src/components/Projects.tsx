@@ -4,13 +4,15 @@ import { PROJECTS } from '../data/portfolioData';
 import type { Project } from '../types';
 
 export const Projects: React.FC = () => {
-  const [filter, setFilter] = useState<'All' | 'Fintech' | 'InsurTech' | 'Web3' | 'Full-Stack'>('All');
+  const [filter, setFilter] = useState<'All' | 'AI / Automation' | 'Fintech' | 'InsurTech' | 'Web3' | 'Full-Stack'>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = filter === 'All' ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
 
   const getCategoryBadgeColor = (category: string) => {
     switch (category) {
+      case 'AI / Automation':
+        return { bg: 'rgba(236, 72, 153, 0.12)', border: 'rgba(236, 72, 153, 0.3)', text: '#ec4899' };
       case 'Fintech':
         return { bg: 'rgba(6, 182, 212, 0.12)', border: 'rgba(6, 182, 212, 0.3)', text: '#06b6d4' };
       case 'InsurTech':
@@ -33,7 +35,7 @@ export const Projects: React.FC = () => {
           </div>
           <h2 className="section-title">Featured Engineering Projects</h2>
           <p className="section-subtitle">
-            A showcase of production platforms, financial workflows, payment integrations, and Web3 products built over 5+ years.
+            A showcase of production platforms, AI agents, financial workflows, payment integrations, and Web3 products built over 5+ years.
           </p>
         </div>
 
@@ -47,7 +49,7 @@ export const Projects: React.FC = () => {
             marginBottom: '3rem',
           }}
         >
-          {['All', 'Fintech', 'InsurTech', 'Web3', 'Full-Stack'].map((cat) => (
+          {['All', 'AI / Automation', 'Fintech', 'InsurTech', 'Web3', 'Full-Stack'].map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat as any)}
@@ -58,7 +60,7 @@ export const Projects: React.FC = () => {
                 cursor: 'pointer',
               }}
             >
-              {cat === 'All' ? 'All Projects (9)' : cat}
+              {cat === 'All' ? `All Projects (${PROJECTS.length})` : cat}
             </button>
           ))}
         </div>
