@@ -146,7 +146,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             </div>
 
             {/* Social Links & Quick Copy Email */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+            <div className="hero-social-row" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
@@ -198,6 +198,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                   cursor: 'pointer',
                   padding: 0,
                   transition: 'color 0.2s ease',
+                  wordBreak: 'break-all',
                 }}
               >
                 {copied ? <Check size={18} /> : <Mail size={18} />}
@@ -225,6 +226,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -244,7 +247,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                 </div>
 
                 {/* Tab Switcher */}
-                <div style={{ display: 'flex', gap: '0.25rem' }}>
+                <div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
                   {(['stack', 'overview', 'achievements'] as const).map((tab) => (
                     <button
                       key={tab}
@@ -270,8 +273,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
               {/* Code Content */}
               <div style={{ padding: '1.25rem', background: '#070a11', minHeight: '260px' }}>
                 {activeTab === 'stack' && (
-                  <pre style={{ margin: 0 }}>
-                    <code className="mono" style={{ background: 'transparent', padding: 0 }}>
+                  <pre style={{ margin: 0, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+                    <code className="mono" style={{ background: 'transparent', padding: 0, fontSize: '0.825rem', lineHeight: 1.6 }}>
                       <span style={{ color: '#8b5cf6' }}>const</span> <span style={{ color: '#06b6d4' }}>developer</span> = &#123;{'\n'}
                       {'  '}name: <span style={{ color: '#10b981' }}>'{PERSONAL_INFO.name}'</span>,{'\n'}
                       {'  '}role: <span style={{ color: '#10b981' }}>'Senior Full-Stack Developer'</span>,{'\n'}
@@ -333,6 +336,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
 
         {/* Highlight Metrics Counter Cards Grid */}
         <div
+          className="hero-metrics-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -343,7 +347,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
           {METRICS.map((metric, idx) => (
             <div
               key={idx}
-              className="glass-card"
+              className="glass-card hero-metric-card"
               style={{
                 padding: '1.5rem',
                 display: 'flex',
@@ -359,15 +363,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                   background: 'var(--gradient-primary)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
+                  flexShrink: 0,
                 }}
               >
                 {metric.value}
               </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.15rem' }}>
+              <div style={{ minWidth: 0 }}>
+                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.15rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {metric.label}
                 </h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>{metric.description}</p>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', lineHeight: 1.4 }}>{metric.description}</p>
               </div>
             </div>
           ))}
@@ -378,6 +383,26 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         @media (min-width: 992px) {
           .hero-grid {
             grid-template-columns: 1.15fr 0.85fr !important;
+          }
+        }
+        @media (max-width: 900px) {
+          .hero-metrics-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+            margin-top: 2.5rem !important;
+          }
+        }
+        @media (max-width: 520px) {
+          .hero-metrics-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-metric-card {
+            padding: 1.15rem !important;
+          }
+          .hero-social-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.75rem !important;
           }
         }
       `}</style>
