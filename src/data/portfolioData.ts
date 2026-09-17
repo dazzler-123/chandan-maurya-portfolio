@@ -194,6 +194,22 @@ export const PROJECTS: Project[] = [
     featured: true
   },
   {
+    id: 'realtime-ecosystem',
+    title: 'Multi-Platform Real-Time Ecosystem Suite',
+    category: 'Full-Stack',
+    tagline: 'MERN & React Native ecosystem with real-time WebSockets, FCM notifications & admin portal',
+    description: 'An end-to-end application ecosystem featuring a Node.js/Express REST backend, Socket.IO WebSockets, MongoDB, React 19 web frontend, React Native mobile app with FCM push notifications, and an admin management dashboard.',
+    technologies: ['React 19', 'React Native 0.84', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Firebase FCM', 'Material-UI'],
+    keyHighlights: [
+      'Engineered an end-to-end real-time ecosystem linking Node.js REST APIs, Socket.IO WebSockets, React 19 web, and React Native mobile clients.',
+      'Built cross-platform iOS & Android mobile app in React Native 0.84 with Firebase FCM push notifications, Google Sign-In, and GPS geolocation.',
+      'Implemented secure JWT authentication, bcrypt password hashing, express rate-limiting, and Mongoose database index optimizations.',
+      'Developed an admin control panel for real-time user management, system seeding, and push notification dispatching.'
+    ],
+    metrics: 'Real-Time WebSockets & Cross-Platform Mobile App',
+    featured: true
+  },
+  {
     id: 'investment-management',
     title: 'Investment Management Platform',
     category: 'Fintech',
