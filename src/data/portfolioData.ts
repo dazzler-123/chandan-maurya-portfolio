@@ -19,7 +19,7 @@ export const PERSONAL_INFO = {
 
 export const METRICS = [
   { label: 'Years Experience', value: '5+', description: 'Enterprise Web, Mobile & Web3 Systems' },
-  { label: 'Enterprise Projects', value: '14+', description: 'Fintech, AI Agents, InsurTech & Web3' },
+  { label: 'Enterprise Projects', value: '15+', description: 'Fintech, AI Agents, InsurTech & Web3' },
   { label: 'Micro-Frontends', value: '19+', description: 'Modules Built with Turborepo' },
   { label: 'Support Reduction', value: '25%', description: 'Achieved via No-Code Form Engine' },
 ];
@@ -156,6 +156,24 @@ export const PROJECTS: Project[] = [
       'Designed a sleek glassmorphism dashboard for profile management, application queue monitoring, and manual intervention controls.'
     ],
     metrics: 'LangGraph State Machine & Playwright Automation',
+    featured: true
+  },
+  {
+    id: 'ai-marketing-agent',
+    title: 'AI Marketing Agent',
+    category: 'AI / Automation',
+    tagline: 'LangGraph-powered agent that plans, designs, validates & publishes on-brand Instagram posts',
+    description: 'A multi-agent social media platform that turns a simple prompt (plus optional product PDF, photos and logo) into a validated, on-brand post. A LangGraph workflow handles memory, research, strategy, image and caption generation, automated fact-checking and human review before publishing directly to client Instagram accounts.',
+    technologies: ['Python', 'LangGraph', 'FastAPI', 'Google Gemini', 'Next.js', 'TypeScript', 'PostgreSQL (Neon)', 'Redis & ARQ', 'Cloudinary', 'Clerk', 'Docker', 'Meta Graph API'],
+    keyHighlights: [
+      'Architected a LangGraph pipeline with conditional fan-out (brief, PDF, reference & logo agents), parallel image and caption generation, and a bounded retry loop that regenerates only the failing node.',
+      'Built trust guardrails: every caption claim is traced to a source fact, an LLM judge reads poster text back from the image, and web-research facts are cited, so posts never contain invented claims.',
+      'Implemented human-in-the-loop review with interrupt/resume: pick image drafts and caption variants, edit inline, request changes, publish now or later, with per-post cost and token tracking.',
+      'Integrated Instagram publishing across multiple client accounts with encrypted access tokens, automatic token refresh cron, and idempotent publish to prevent double-posting.',
+      'Added persistent brand memory (brand kit, past posts, caption edits) in Postgres so repeat posts skip PDF parsing and learn the brand\'s tone from user edits.',
+      'Shipped with background ARQ workers, live progress streaming, a usage & analytics dashboard, Docker Compose, CI and 330+ backend tests.'
+    ],
+    metrics: '330+ Tests, Multi-Client Instagram Publishing & Fact-Checked Generation',
     featured: true
   },
   {
