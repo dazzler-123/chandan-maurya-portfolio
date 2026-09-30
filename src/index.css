@@ -348,10 +348,57 @@ pre code {
   .modal-content, .modal-stagger { animation: none; opacity: 1; }
 }
 
+/* Site-wide effects */
+.fx-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1001;
+  background: var(--gradient-primary); transform: scaleX(0); transform-origin: left;
+  pointer-events: none;
+}
+.fx-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.fx-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
+.fx-orb-a { width: 460px; height: 460px; background: #06b6d4; top: 8%; left: -8%; animation: fxFloat 18s ease-in-out infinite; }
+.fx-orb-b { width: 520px; height: 520px; background: #8b5cf6; bottom: 4%; right: -10%; animation: fxFloat 22s ease-in-out infinite reverse; }
+@keyframes fxFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -50px) scale(1.12); }
+}
+.fx-cursor-glow {
+  position: fixed; top: 0; left: 0; width: 400px; height: 400px; z-index: 0; pointer-events: none;
+  border-radius: 50%; opacity: 0; transition: opacity 0.4s ease;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.09), transparent 65%);
+}
+main, footer { position: relative; z-index: 1; }
+
+.fx-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.fx-reveal.fx-in { opacity: 1; transform: none; }
+
+.fx-top {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 900; width: 44px; height: 44px;
+  border-radius: 50%; border: 1px solid var(--border-accent); background: rgba(15, 23, 42, 0.85);
+  color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  backdrop-filter: blur(8px); opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.fx-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.fx-top:hover { box-shadow: var(--glow-cyan); transform: translateY(-3px); }
+
+.btn:active { transform: scale(0.97); }
+.pill-badge { transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
+.pill-badge:hover { transform: translateY(-2px); }
+.glass-card:not(.project-card):hover { transform: translateY(-4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-reveal { opacity: 1; transform: none; transition: none; }
+  .fx-orb, .fx-cursor-glow { animation: none; }
+  .fx-cursor-glow { display: none; }
+}
+
 /* ==========================================
    Print Styles for Resume Printing
    ========================================== */
 @media print {
+  .fx-progress, .fx-orbs, .fx-cursor-glow, .fx-top { display: none !important; }
+  .fx-reveal, .project-reveal { opacity: 1 !important; transform: none !important; }
   @page {
     size: portrait;
     margin: 12mm 15mm;

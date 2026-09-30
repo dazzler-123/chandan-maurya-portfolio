@@ -7,6 +7,7 @@ import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { SiteEffects } from './components/SiteEffects';
 import { ResumeModal } from './components/ResumeModal';
 
 export function App() {
@@ -14,6 +15,8 @@ export function App() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-main)' }}>
+      <SiteEffects />
+
       {/* Sticky Top Navigation */}
       <Navbar onOpenResume={() => setResumeOpen(true)} />
 
