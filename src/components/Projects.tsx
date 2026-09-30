@@ -1,7 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FolderGit2, Zap, X, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import type { Project } from '../types';
+
+// Fades an element in (once) when it scrolls into view.
+const useReveal = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setVisible(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return { ref, visible };
+};
+
+// Card wrapper: scroll reveal, 3D tilt and a cursor-following spotlight.
+const InteractiveCard: React.FC<{ index: number; children: React.ReactNode }> = ({ index, children }) => {
+  const { ref, visible } = useReveal();
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    el.style.setProperty('--mx', `${x * 100}%`);
+    el.style.setProperty('--my', `${y * 100}%`);
+    el.style.setProperty('--rx', `${(0.5 - y) * 6}deg`);
+    el.style.setProperty('--ry', `${(x - 0.5) * 6}deg`);
+  };
+  const handleLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.setProperty('--rx', '0deg');
+    e.currentTarget.style.setProperty('--ry', '0deg');
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={`project-reveal ${visible ? 'is-visible' : ''}`}
+      style={{ transitionDelay: `${Math.min(index % 6, 5) * 80}ms` }}
+    >
+      <div className="project-card glass-card" onMouseMove={handleMove} onMouseLeave={handleLeave}>
+        {children}
+      </div>
+    </div>
+  );
+};
 
 export const Projects: React.FC = () => {
   const [filter, setFilter] = useState<'All' | 'AI / Automation' | 'Fintech' | 'InsurTech' | 'Web3' | 'Full-Stack'>('All');
@@ -73,12 +130,11 @@ export const Projects: React.FC = () => {
             gap: '1.75rem',
           }}
         >
-          {filteredProjects.map((project) => {
+          {filteredProjects.map((project, index) => {
             const badgeStyle = getCategoryBadgeColor(project.category);
             return (
+              <InteractiveCard key={project.id} index={index}>
               <div
-                key={project.id}
-                className="glass-card"
                 style={{
                   padding: '1.75rem',
                   display: 'flex',
@@ -242,6 +298,7 @@ export const Projects: React.FC = () => {
                   </button>
                 </div>
               </div>
+              </InteractiveCard>
             );
           })}
         </div>
@@ -314,7 +371,7 @@ export const Projects: React.FC = () => {
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                   {selectedProject.keyHighlights.map((highlight, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                    <div key={idx} className="modal-stagger" style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', animationDelay: `${150 + idx * 70}ms` }}>
                       <CheckCircle2 size={18} color="var(--accent-teal)" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span style={{ fontSize: '0.925rem', color: 'var(--text-main)', lineHeight: 1.5 }}>
                         {highlight}

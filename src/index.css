@@ -302,6 +302,52 @@ pre code {
   position: relative;
 }
 
+/* Project cards: scroll reveal, tilt & spotlight */
+.project-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 900px;
+}
+.project-reveal.is-visible { opacity: 1; transform: none; }
+
+.project-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(6, 182, 212, 0.16), transparent 60%);
+  transition: opacity 0.3s ease;
+}
+.project-card:hover::before { opacity: 1; }
+.project-card > * { position: relative; }
+
+/* Modal entrance */
+.modal-content { animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.modal-stagger { opacity: 0; animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@media (hover: none) {
+  .project-card { transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-reveal { opacity: 1; transform: none; transition: none; }
+  .project-card { transform: none !important; }
+  .modal-content, .modal-stagger { animation: none; opacity: 1; }
+}
+
 /* ==========================================
    Print Styles for Resume Printing
    ========================================== */
