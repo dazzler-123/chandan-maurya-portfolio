@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { FileText, Send, Mail, MapPin, ShieldCheck, Zap, ArrowRight, Check } from 'lucide-react';
 import { PERSONAL_INFO, METRICS } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
+import { Typewriter, CountUp, HeroShapes } from './HeroEffects';
+
+const ROLE_PHRASES = ['MEAN / MERN / React Native', 'Fintech & Web3 Platforms', 'LangGraph AI Agents', 'Micro-Frontend Architecture'];
 
 interface HeroProps {
   onOpenResume: () => void;
@@ -29,6 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         position: 'relative',
       }}
     >
+      <HeroShapes />
       <div className="container">
         <div
           style={{
@@ -90,7 +94,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             >
               <span>Senior Full-Stack Developer</span>
               <span style={{ color: 'var(--accent-cyan)' }}>|</span>
-              <span style={{ color: 'var(--text-main)' }}>MEAN / MERN / React Native</span>
+              <span style={{ color: 'var(--text-main)' }}>
+                <Typewriter phrases={ROLE_PHRASES} />
+              </span>
             </h2>
 
             {/* Value Proposition Description */}
@@ -366,7 +372,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                   flexShrink: 0,
                 }}
               >
-                {metric.value}
+                <CountUp value={metric.value} />
               </div>
               <div style={{ minWidth: 0 }}>
                 <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.15rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Code2, Layers, Cpu, Database, Bot, Shield, Wrench, Sparkles } from 'lucide-react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 
+type SkillFilter = 'all' | 'frontend' | 'backend' | 'web3' | 'ai';
+
 export const Skills: React.FC = () => {
-  const [filter, setFilter] = useState<'all' | 'frontend' | 'backend' | 'web3' | 'ai'>('all');
+  const [filter, setFilter] = useState<SkillFilter>('all');
 
   const filterMap = {
     all: SKILL_CATEGORIES,
@@ -68,7 +70,7 @@ export const Skills: React.FC = () => {
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setFilter(tab.id as any)}
+              onClick={() => setFilter(tab.id as SkillFilter)}
               className={`pill-badge ${filter === tab.id ? 'active' : ''}`}
               style={{
                 padding: '0.6rem 1.25rem',
@@ -126,9 +128,10 @@ export const Skills: React.FC = () => {
 
               {/* Skills Tags List */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem' }}>
-                {cat.skills.map((skill) => (
+                {cat.skills.map((skill, i) => (
                   <div
                     key={skill.name}
+                    className="skill-chip"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -142,6 +145,7 @@ export const Skills: React.FC = () => {
                       color: skill.highlighted ? 'var(--text-main)' : 'var(--text-muted)',
                       fontWeight: skill.highlighted ? 600 : 400,
                       transition: 'all 0.2s ease',
+                      ['--i' as string]: i,
                     }}
                   >
                     {skill.highlighted && (

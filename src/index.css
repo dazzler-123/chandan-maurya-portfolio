@@ -302,10 +302,165 @@ pre code {
   position: relative;
 }
 
+/* Project cards: scroll reveal, tilt & spotlight */
+.project-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 900px;
+}
+.project-reveal.is-visible { opacity: 1; transform: none; }
+
+.project-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(6, 182, 212, 0.16), transparent 60%);
+  transition: opacity 0.3s ease;
+}
+.project-card:hover::before { opacity: 1; }
+.project-card > * { position: relative; }
+
+/* Modal entrance */
+.modal-content { animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.modal-stagger { opacity: 0; animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@media (hover: none) {
+  .project-card { transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-reveal { opacity: 1; transform: none; transition: none; }
+  .project-card { transform: none !important; }
+  .modal-content, .modal-stagger { animation: none; opacity: 1; }
+}
+
+/* Site-wide effects */
+.fx-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1001;
+  background: var(--gradient-primary); transform: scaleX(0); transform-origin: left;
+  pointer-events: none;
+}
+.fx-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.fx-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
+.fx-orb-a { width: 460px; height: 460px; background: #06b6d4; top: 8%; left: -8%; animation: fxFloat 18s ease-in-out infinite; }
+.fx-orb-b { width: 520px; height: 520px; background: #8b5cf6; bottom: 4%; right: -10%; animation: fxFloat 22s ease-in-out infinite reverse; }
+@keyframes fxFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -50px) scale(1.12); }
+}
+.fx-cursor-glow {
+  position: fixed; top: 0; left: 0; width: 400px; height: 400px; z-index: 0; pointer-events: none;
+  border-radius: 50%; opacity: 0; transition: opacity 0.4s ease;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.09), transparent 65%);
+}
+main, footer { position: relative; z-index: 1; }
+
+.fx-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.fx-reveal.fx-in { opacity: 1; transform: none; }
+
+.fx-top {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 900; width: 44px; height: 44px;
+  border-radius: 50%; border: 1px solid var(--border-accent); background: rgba(15, 23, 42, 0.85);
+  color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  backdrop-filter: blur(8px); opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.fx-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.fx-top:hover { box-shadow: var(--glow-cyan); transform: translateY(-3px); }
+
+.btn:active { transform: scale(0.97); }
+.pill-badge { transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
+.pill-badge:hover { transform: translateY(-2px); }
+.glass-card:not(.project-card):hover { transform: translateY(-4px); }
+
+/* Hero: typewriter, shapes, shimmer */
+.typewriter-caret {
+  display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: text-bottom;
+  background: var(--accent-cyan); animation: caretBlink 1s steps(1) infinite;
+}
+@keyframes caretBlink { 50% { opacity: 0; } }
+.typewriter { display: inline-block; min-height: 1.3em; }
+
+.gradient-text { background-size: 200% 200%; animation: gradientShift 6s ease-in-out infinite; }
+@keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+.hero-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.hero-shape {
+  position: absolute; opacity: 0.5;
+  transform: translate(calc(var(--px, 0) * var(--depth) * 1px), calc(var(--py, 0) * var(--depth) * 1px));
+  transition: transform 0.25s ease-out;
+}
+.hs-ring { width: 120px; height: 120px; border: 2px solid rgba(6, 182, 212, 0.45); border-radius: 50%; top: 18%; right: 8%; }
+.hs-square { width: 70px; height: 70px; border: 2px solid rgba(139, 92, 246, 0.45); border-radius: 14px; bottom: 22%; left: 4%; rotate: 18deg; animation: fxSpin 24s linear infinite; }
+.hs-dot { width: 16px; height: 16px; border-radius: 50%; background: #3b82f6; top: 40%; left: 46%; box-shadow: 0 0 24px #3b82f6; }
+.hs-tri { width: 0; height: 0; border-left: 28px solid transparent; border-right: 28px solid transparent; border-bottom: 48px solid rgba(6, 182, 212, 0.35); bottom: 12%; right: 30%; }
+@keyframes fxSpin { to { rotate: 378deg; } }
+#hero > .container { position: relative; z-index: 1; }
+@media (max-width: 768px) { .hero-shape { opacity: 0.25; } }
+
+/* Experience timeline draw */
+.timeline-bar { position: absolute; top: 20px; bottom: 20px; left: 24px; width: 2px; background: rgba(148, 163, 184, 0.15); --fill: 0; }
+.timeline-bar-fill {
+  width: 100%; height: 100%; transform-origin: top; transform: scaleY(var(--fill));
+  background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-violet) 100%);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+
+/* Skill chips */
+.skill-chip { opacity: 0; transform: scale(0.85); }
+.fx-in .skill-chip, .fx-reveal.fx-in.skill-chip { animation: chipPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; animation-delay: calc(var(--i, 0) * 45ms + 200ms); }
+@keyframes chipPop { to { opacity: 1; transform: scale(1); } }
+.skill-chip:hover { transform: translateY(-3px) scale(1.06) !important; border-color: var(--accent-cyan) !important; box-shadow: 0 6px 16px rgba(6, 182, 212, 0.2); }
+
+/* Section title underline sweep */
+.section-title { position: relative; display: block; width: fit-content; margin-left: auto; margin-right: auto; }
+.section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -6px; height: 3px; width: 100%; border-radius: 2px;
+  background: var(--gradient-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.9s 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fx-in .section-title::after { transform: scaleX(1); }
+
+/* Custom cursor ring & magnetic buttons */
+.fx-cursor-ring {
+  position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 1002; pointer-events: none;
+  border: 1.5px solid rgba(6, 182, 212, 0.7); border-radius: 50%; opacity: 0;
+  transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease, margin 0.2s ease;
+}
+.fx-cursor-ring.is-hover { width: 52px; height: 52px; margin: -8px 0 0 -8px; background: rgba(6, 182, 212, 0.12); }
+@media (hover: none) { .fx-cursor-ring { display: none; } }
+.btn { transition: all 0.25s ease, translate 0.2s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-chip { opacity: 1; transform: none; animation: none !important; }
+  .gradient-text, .hs-square, .typewriter-caret { animation: none; }
+  .section-title::after { transform: scaleX(1); transition: none; }
+  .fx-cursor-ring { display: none; }
+  .fx-reveal { opacity: 1; transform: none; transition: none; }
+  .fx-orb, .fx-cursor-glow { animation: none; }
+  .fx-cursor-glow { display: none; }
+}
+
 /* ==========================================
    Print Styles for Resume Printing
    ========================================== */
 @media print {
+  .fx-progress, .fx-orbs, .fx-cursor-glow, .fx-cursor-ring, .fx-top, .hero-shapes { display: none !important; }
+  .skill-chip { opacity: 1 !important; transform: none !important; }
+  .fx-reveal, .project-reveal { opacity: 1 !important; transform: none !important; }
   @page {
     size: portrait;
     margin: 12mm 15mm;
