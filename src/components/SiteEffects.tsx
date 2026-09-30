@@ -8,6 +8,7 @@ const REVEAL_SELECTOR = '.section-header, .glass-card:not(.project-card):not(.he
 export const SiteEffects: React.FC = () => {
   const barRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -24,13 +25,58 @@ export const SiteEffects: React.FC = () => {
 
   useEffect(() => {
     if (!window.matchMedia('(hover: hover)').matches) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let tx = 0;
+    let ty = 0;
+    let rx = 0;
+    let ry = 0;
+    let raf = 0;
+    const loop = () => {
+      rx += (tx - rx) * 0.18;
+      ry += (ty - ry) * 0.18;
+      if (ringRef.current) ringRef.current.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      raf = requestAnimationFrame(loop);
+    };
+    if (!reduce) raf = requestAnimationFrame(loop);
+
+    const INTERACTIVE = 'a, button, [role="button"], input, textarea, select, .pill-badge';
+    let magnet: HTMLElement | null = null;
     const onMove = (e: MouseEvent) => {
-      if (!glowRef.current) return;
-      glowRef.current.style.opacity = '1';
-      glowRef.current.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
+      tx = e.clientX;
+      ty = e.clientY;
+      if (glowRef.current) {
+        glowRef.current.style.opacity = '1';
+        glowRef.current.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
+      }
+      const target = e.target as HTMLElement | null;
+      const hovering = !!target?.closest?.(INTERACTIVE);
+      if (ringRef.current) {
+        ringRef.current.style.opacity = '1';
+        ringRef.current.classList.toggle('is-hover', hovering);
+      }
+      if (reduce) return;
+      // Magnetic pull on primary buttons
+      const btn = target?.closest?.('.btn') as HTMLElement | null;
+      if (magnet && magnet !== btn) magnet.style.translate = '';
+      magnet = btn;
+      if (btn) {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) * 0.18;
+        const dy = (e.clientY - (r.top + r.height / 2)) * 0.28;
+        btn.style.translate = `${dx}px ${dy}px`;
+      }
+    };
+    const onLeave = () => {
+      if (ringRef.current) ringRef.current.style.opacity = '0';
+      if (magnet) magnet.style.translate = '';
     };
     window.addEventListener('mousemove', onMove, { passive: true });
-    return () => window.removeEventListener('mousemove', onMove);
+    document.addEventListener('mouseleave', onLeave);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseleave', onLeave);
+    };
   }, []);
 
   useEffect(() => {
@@ -72,6 +118,7 @@ export const SiteEffects: React.FC = () => {
         <span className="fx-orb fx-orb-b" />
       </div>
       <div ref={glowRef} className="fx-cursor-glow" aria-hidden="true" />
+      <div ref={ringRef} className="fx-cursor-ring" aria-hidden="true" />
       <button
         className={`fx-top ${showTop ? 'show' : ''}`}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

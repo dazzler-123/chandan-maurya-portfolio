@@ -126,9 +126,10 @@ export const Skills: React.FC = () => {
 
               {/* Skills Tags List */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem' }}>
-                {cat.skills.map((skill) => (
+                {cat.skills.map((skill, i) => (
                   <div
                     key={skill.name}
+                    className="skill-chip"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -142,6 +143,7 @@ export const Skills: React.FC = () => {
                       color: skill.highlighted ? 'var(--text-main)' : 'var(--text-muted)',
                       fontWeight: skill.highlighted ? 600 : 400,
                       transition: 'all 0.2s ease',
+                      ['--i' as string]: i,
                     }}
                   >
                     {skill.highlighted && (

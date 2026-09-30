@@ -1,6 +1,7 @@
 import React from 'react';
 import { Briefcase, Calendar, MapPin, CheckCircle, Award } from 'lucide-react';
 import { WORK_EXPERIENCE } from '../data/portfolioData';
+import { TimelineBar } from './HeroEffects';
 
 export const Experience: React.FC = () => {
   return (
@@ -26,18 +27,8 @@ export const Experience: React.FC = () => {
             position: 'relative',
           }}
         >
-          {/* Vertical Timeline Bar */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '20px',
-              bottom: '20px',
-              left: '24px',
-              width: '2px',
-              background: 'linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-violet) 100%)',
-              opacity: 0.4,
-            }}
-          />
+          {/* Vertical Timeline Bar (draws on scroll) */}
+          <TimelineBar />
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             {WORK_EXPERIENCE.map((exp) => (

@@ -387,7 +387,68 @@ main, footer { position: relative; z-index: 1; }
 .pill-badge:hover { transform: translateY(-2px); }
 .glass-card:not(.project-card):hover { transform: translateY(-4px); }
 
+/* Hero: typewriter, shapes, shimmer */
+.typewriter-caret {
+  display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: text-bottom;
+  background: var(--accent-cyan); animation: caretBlink 1s steps(1) infinite;
+}
+@keyframes caretBlink { 50% { opacity: 0; } }
+.typewriter { display: inline-block; min-height: 1.3em; }
+
+.gradient-text { background-size: 200% 200%; animation: gradientShift 6s ease-in-out infinite; }
+@keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+.hero-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.hero-shape {
+  position: absolute; opacity: 0.5;
+  transform: translate(calc(var(--px, 0) * var(--depth) * 1px), calc(var(--py, 0) * var(--depth) * 1px));
+  transition: transform 0.25s ease-out;
+}
+.hs-ring { width: 120px; height: 120px; border: 2px solid rgba(6, 182, 212, 0.45); border-radius: 50%; top: 18%; right: 8%; }
+.hs-square { width: 70px; height: 70px; border: 2px solid rgba(139, 92, 246, 0.45); border-radius: 14px; bottom: 22%; left: 4%; rotate: 18deg; animation: fxSpin 24s linear infinite; }
+.hs-dot { width: 16px; height: 16px; border-radius: 50%; background: #3b82f6; top: 40%; left: 46%; box-shadow: 0 0 24px #3b82f6; }
+.hs-tri { width: 0; height: 0; border-left: 28px solid transparent; border-right: 28px solid transparent; border-bottom: 48px solid rgba(6, 182, 212, 0.35); bottom: 12%; right: 30%; }
+@keyframes fxSpin { to { rotate: 378deg; } }
+#hero > .container { position: relative; z-index: 1; }
+@media (max-width: 768px) { .hero-shape { opacity: 0.25; } }
+
+/* Experience timeline draw */
+.timeline-bar { position: absolute; top: 20px; bottom: 20px; left: 24px; width: 2px; background: rgba(148, 163, 184, 0.15); --fill: 0; }
+.timeline-bar-fill {
+  width: 100%; height: 100%; transform-origin: top; transform: scaleY(var(--fill));
+  background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-violet) 100%);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+
+/* Skill chips */
+.skill-chip { opacity: 0; transform: scale(0.85); }
+.fx-in .skill-chip, .fx-reveal.fx-in.skill-chip { animation: chipPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; animation-delay: calc(var(--i, 0) * 45ms + 200ms); }
+@keyframes chipPop { to { opacity: 1; transform: scale(1); } }
+.skill-chip:hover { transform: translateY(-3px) scale(1.06) !important; border-color: var(--accent-cyan) !important; box-shadow: 0 6px 16px rgba(6, 182, 212, 0.2); }
+
+/* Section title underline sweep */
+.section-title { position: relative; display: block; width: fit-content; margin-left: auto; margin-right: auto; }
+.section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -6px; height: 3px; width: 100%; border-radius: 2px;
+  background: var(--gradient-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.9s 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fx-in .section-title::after { transform: scaleX(1); }
+
+/* Custom cursor ring & magnetic buttons */
+.fx-cursor-ring {
+  position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 1002; pointer-events: none;
+  border: 1.5px solid rgba(6, 182, 212, 0.7); border-radius: 50%; opacity: 0;
+  transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease, margin 0.2s ease;
+}
+.fx-cursor-ring.is-hover { width: 52px; height: 52px; margin: -8px 0 0 -8px; background: rgba(6, 182, 212, 0.12); }
+@media (hover: none) { .fx-cursor-ring { display: none; } }
+.btn { transition: all 0.25s ease, translate 0.2s ease-out; }
+
 @media (prefers-reduced-motion: reduce) {
+  .skill-chip { opacity: 1; transform: none; animation: none !important; }
+  .gradient-text, .hs-square, .typewriter-caret { animation: none; }
+  .section-title::after { transform: scaleX(1); transition: none; }
+  .fx-cursor-ring { display: none; }
   .fx-reveal { opacity: 1; transform: none; transition: none; }
   .fx-orb, .fx-cursor-glow { animation: none; }
   .fx-cursor-glow { display: none; }
@@ -397,7 +458,8 @@ main, footer { position: relative; z-index: 1; }
    Print Styles for Resume Printing
    ========================================== */
 @media print {
-  .fx-progress, .fx-orbs, .fx-cursor-glow, .fx-top { display: none !important; }
+  .fx-progress, .fx-orbs, .fx-cursor-glow, .fx-cursor-ring, .fx-top, .hero-shapes { display: none !important; }
+  .skill-chip { opacity: 1 !important; transform: none !important; }
   .fx-reveal, .project-reveal { opacity: 1 !important; transform: none !important; }
   @page {
     size: portrait;
