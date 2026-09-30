@@ -60,8 +60,10 @@ const InteractiveCard: React.FC<{ index: number; children: React.ReactNode }> = 
   );
 };
 
+type ProjectFilter = 'All' | Project['category'];
+
 export const Projects: React.FC = () => {
-  const [filter, setFilter] = useState<'All' | 'AI / Automation' | 'Fintech' | 'InsurTech' | 'Web3' | 'Full-Stack'>('All');
+  const [filter, setFilter] = useState<ProjectFilter>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = filter === 'All' ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
@@ -109,7 +111,7 @@ export const Projects: React.FC = () => {
           {['All', 'AI / Automation', 'Fintech', 'InsurTech', 'Web3', 'Full-Stack'].map((cat) => (
             <button
               key={cat}
-              onClick={() => setFilter(cat as any)}
+              onClick={() => setFilter(cat as ProjectFilter)}
               className={`pill-badge ${filter === cat ? 'active' : ''}`}
               style={{
                 padding: '0.6rem 1.25rem',
